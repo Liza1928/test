@@ -1,0 +1,116 @@
+﻿
+
+procedure Main;
+var mspaint, OsVersion,fmMain,Formm,p,x,y,item,group,tab;
+var edit,value,text,is_value,labels,val,t,lookup,ex;
+begin
+  // Run the tested application
+   TestedApps.RunAll;
+   mspaint := Sys.WaitProcess('TestEnvironment(TD32)', 2000);
+   fmMain := mspaint.VCLObject('Fmain');
+   fmMain.Maximize;
+
+   Formm:=fmMain.VCLObject('dxRibbon').Window('TdxRibbonGroupsDockControlSite', '', 1).Window
+  ('TdxRibbonGroupsDockControl', '', 1).Window('TdxRibbonGroupBarControl', '', 1) ;
+  //Click on Форма редакторов
+   Formm.Click(4, 4);
+   //Object for edit 
+   edit:=fmmain.Window('MDIClient', '', 1).VCLObject('FEdits').VCLObject('sbMain').
+   VCLObject('pMainPanel');
+   edit.VCLObject('mTest').VCLObject('mTestEdit').Window('TcxCustomInnerMemo', '', 1).Click; 
+   text:='First line' + #13#10 + 'Second Line';
+   edit.VCLObject('mTest').VCLObject('mTestEdit').SetText(text);
+//object for values
+  value:=fmmain.Window('MDIClient', '', 1).VCLObject('FEdits').VCLObject('sbMain')
+  .VCLObject('pButtonsPanel');
+   value.Window('TcxButton', 'Значение ->', 7).ClickButton;
+  labels:=fmmain.Window('MDIClient', '', 1).VCLObject('FEdits').VCLObject('sbMain')
+  .VCLObject('pLabelsPanel');
+   if not (labels.Window('TcxLabel', text, 7).WndCaption=text) then
+   is_value:=False;
+   text:='one_line';
+   
+   
+   
+   fmmain.Window('MDIClient', '', 1).VCLObject('FEdits').VCLObject('sbMain').
+   VCLObject('pMainPanel').VCLObject('edTest').VCLObject('edTestEdit').SetText(text);
+   value.Window('TcxButton', 'Значение ->', 1).Click;
+   if not (labels.Window('TcxLabel', text, 1).WndCaption=text) then
+   is_value:=False;
+  
+   fmmain.Window('MDIClient', '', 1).VCLObject('FEdits').VCLObject('sbMain').VCLObject('pMainPanel').
+   VCLObject('cbTest').VCLObject('cbTestEdit').Click;
+   
+   value.Window('TcxButton', 'Значение ->', 14).Click;
+   
+     edit.VCLObject('ceTest').VCLObject('ceTestEdit').Window('TcxCustomInnerTextEdit', '', 1).SetText(Text);
+   //button was pressed, but value not found
+     value.Window('TcxButton', 'Значение ->', 11).Click;
+  
+  // if (labels.Window('TcxLabel', 11).WindCaption='') or (labels.Window('TcxLabel', text, 11).WindCaption='______') then ; 
+    //   is_value:=False;
+
+     
+    edit.VCLObject('ccbTest').VCLObject('ccbTestEdit').Click;
+    
+     
+     Sys.Process('TestEnvironment(TD32)').Window('TcxCheckComboBoxPopupWindow', '', 1).Window('TcxEditListBoxContainer', '', 1)
+     .Window('TcxCustomCheckComboBoxListBox', '', 1).Click;
+     value.Window('TcxButton', 'Значение ->', 13).Click;
+     
+     
+   val:=0;
+   edit.VCLObject('seTest').VCLObject('seTestEdit').Window('TcxCustomInnerTextEdit', '', 1).SetText(val);
+   
+edit.VCLObject('seTest').VCLObject('seTestEdit').Window('TcxCustomInnerTextEdit', '', 1).keys('[Down]');
+
+value.Window('TcxButton', 'Значение ->', 2).click;
+
+edit.VCLObject('deTest').VCLObject('deTestEdit').Window('TcxCustomDropDownInnerEdit', '', 1).click;
+//edit.VCLObject('deTest').VCLObject('deTestEdit').Window('TcxCustomDropDownInnerEdit', '', 1).click(267,10);
+
+edit.VCLObject('deTest').VCLObject('deTestEdit').click(275,10);
+t:=Sys.Process('TestEnvironment(TD32)').Window('TcxDateEditPopupWindow', '', 1).Window('TcxPopupCalendar', '', 1);
+t.Keys('[Enter]');
+
+value.Window('TcxButton', 'Значение ->', 10).click;
+   
+edit.VCLObject('peTest').VCLObject('peTestProgress').Click ;
+edit.VCLObject('peTest').VCLObject('peTestUp').Click;  
+
+
+lookup:=edit.VCLObject('lueTest').VCLObject('lueTestEdit');
+lookup.Click(lookup.width-20,lookup.height-4);
+
+Sys.Process('TestEnvironment(TD32)').Window('TcxComboBoxPopupWindow', '', 1).Window('TcxCustomLookupDBGrid', '', 1).Click;
+
+
+
+lookup.Click(lookup.width-5,lookup.height-4);
+   
+lookup.Click(lookup.width-20,lookup.height-4);   
+Sys.Process('TestEnvironment(TD32)').Window('TcxComboBoxPopupWindow', '', 1).Window('TcxCustomLookupDBGrid', '', 1).Click;
+   
+value.Window('TcxButton', 'Значение ->', 9).Click;  
+
+
+ex:=fmmain.Window('MDIClient', '', 1);
+ex.CLick(ex.width/13,ex.height-15);
+//ex.Click(150,900);
+
+ 
+   
+//.VCLObject('FEdits').VCLObject('sbMain').VCLObject('pLabelsPanel').Window('TcxLabel', '12456789012', 7)
+
+   //fmMain.VCLObject('dxRibbon').Window('Button','Форма редакторов').ClickItem;
+
+ // if (aqEnvironment.GetWinMajorVersion > 6) or ((aqEnvironment.GetWinMajorVersion = 6)and(aqEnvironment.GetWinMinorVersion > 0)) then  
+   // Hello_w7(mspaint)
+ // else
+    //Hello(mspaint);
+    
+ // mspaint.Close;
+ // Sys.Keys('n');
+ // while (mspaint.exists) do sleep(500);
+end;
+
