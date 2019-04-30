@@ -1,2 +1,2 @@
 test
-tests on delphi scrit on testenvironment
+tests on delphi script on testenvironment
