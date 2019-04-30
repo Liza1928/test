@@ -1,0 +1,32 @@
+﻿procedure Main;
+var mspaint, OsVersion,fmMain,Formm,p,x,y,item,group,tab;
+var edit,value,text,is_value,labels,val,t,lookup,ex;
+begin
+  // Run the tested application
+   TestedApps.RunAll;
+   mspaint := Sys.WaitProcess('TestEnvironment(TD32)', 2000);
+   fmMain := mspaint.VCLObject('Fmain');
+   fmMain.Maximize;
+
+   Formm:=fmMain.VCLObject('dxRibbon').Window('TdxRibbonGroupsDockControlSite', '', 1).Window
+  ('TdxRibbonGroupsDockControl', '', 1).Window('TdxRibbonGroupBarControl', '', 1) ;
+  //Click on Форма редакторов
+   Formm.Click(41,55);
+   
+  fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').wChildView[1].Collapse(2) ;
+   fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').Collapse(1) ;
+ fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').wChildView[3].wChildView[2].ClickCell('1','name');
+//fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').ClickCell('1','name');
+   fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').Window('TcxMaskEdit','',1).Window('TcxCustomInnerTextEdit','',1).
+   setText('Other name'); 
+
+  
+   fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').Expand(1) ;
+  fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').wChildView[1].Expand(2) ;
+   fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').wChildView[1].wChildView[2].ClickCell('0','name');
+ fmmain.Window('MDIClient', '', 1).VCLObject('FTreeList').VCLObject('tlTest').Window('TcxMaskEdit','',1).Window('TcxCustomInnerTextEdit','',1).
+   setText(''); 
+ex:=fmmain.Window('MDIClient', '', 1);
+ex.CLick(ex.width/13,ex.height-15);
+   //Object for edit 
+  end;
